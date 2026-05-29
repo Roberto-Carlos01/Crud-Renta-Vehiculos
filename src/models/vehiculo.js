@@ -43,7 +43,8 @@ const Vehiculo = sequelize.define(
       type: DataTypes.TEXT,
     },
     disponible: {
-      type: DataTypes.BOOLEAN(true),
+      type: DataTypes.BOOLEAN,
+      defaultValue: true,
     },
   },
   //CONFIGURACION DEL MODELO
