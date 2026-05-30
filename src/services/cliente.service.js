@@ -37,11 +37,11 @@ async function actualizarCliente(nombre, apellido, telefono, ci, licencia, id) {
   try {
     const resultado = await Cliente.update(
       {
-        nombre: nombre,
-        apellido: apellido,
-        telefono: telefono,
-        ci: ci,
-        licencia: licencia,
+        nombre,
+        apellido,
+        telefono,
+        ci,
+        licencia,
       },
       { where: { idcliente: id } },
     );

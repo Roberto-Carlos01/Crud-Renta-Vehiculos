@@ -2,4 +2,47 @@
 GET http://localhost:5005/clientes
 
 ### Obtener a un cliente por ID
-GET http://localhost:5005/clientes/1
+GET http://localhost:5005/clientes/3
+
+### Crear un cliente
+POST http://localhost:5005/clientes
+Content-Type: application/json
+
+{
+    "nombre": "Roberto Carlos",
+    "apellido": "Mamani Quispe",
+    "telefono": "123876",
+    "ci": "14415003 LP",
+    "licencia": "LIC-1321"
+}
+
+### Modificar un cliente
+PUT http://localhost:5005/clientes/3
+Content-Type: application/json
+
+{
+    "nombre": "Roberto C",
+    "apellido": "Mamani Q",
+    "telefono": "123876",
+    "ci": "14415003 LP",
+    "licencia": "LIC-1321"   
+}
+
+### Eliminar un cliente
+DELETE http://localhost:5005/clientes/3
+
+### -------------------------
+### Todos los vehiculo
+GET http://localhost:5005/vehiculos
+
+### Obtener a un vehiculo por ID
+GET http://localhost:5005/vehiculos/2
+
+### Crear un vehiculo
+POST http://localhost:5005/vehiculos
+
+### Modificar un vehiculo
+PUT http://localhost:5005/vehiculos/1
+
+### Eliminar un vehiculo
+DELETE http://localhost:5005/vehiculos/1
