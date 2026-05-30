@@ -2,5 +2,4 @@
 GET http://localhost:5005/clientes
 
 ### Obtener a un cliente por ID
-
-GET http://localhost:5005/clientes/2
+GET http://localhost:5005/clientes/1
