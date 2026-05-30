@@ -1,0 +1,6 @@
+### Todos los clientes
+GET http://localhost:5005/clientes
+
+### Obtener a un cliente por ID
+
+GET http://localhost:5005/clientes/2
