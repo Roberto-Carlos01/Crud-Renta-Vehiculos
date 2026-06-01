@@ -36,13 +36,39 @@ DELETE http://localhost:5005/clientes/3
 GET http://localhost:5005/vehiculos
 
 ### Obtener a un vehiculo por ID
-GET http://localhost:5005/vehiculos/2
+GET http://localhost:5005/vehiculos/4
 
 ### Crear un vehiculo
 POST http://localhost:5005/vehiculos
+Content-Type: application/json
+
+{
+    "marca": "Toyota",
+    "modelo": "Hilux",
+    "anio": 2025,
+    "precioDia": "80.00",
+    "placa": "9012-ABI",
+    "color": "Negro",
+    "foto": "hilux.jpg",
+    "descripcion": "Ideal para todo terreno",
+    "disponible": true
+}
 
 ### Modificar un vehiculo
-PUT http://localhost:5005/vehiculos/1
+PUT http://localhost:5005/vehiculos/4
+Content-Type: application/json
+
+{
+    "marca": "Toyota",
+    "modelo": "Hilux Moderno",
+    "anio": 2026,
+    "precioDia": "80.00",
+    "placa": "9012-ABI",
+    "color": "Negro",
+    "foto": "hilux.jpg",
+    "descripcion": "Ideal para todo terreno",
+    "disponible": true
+}
 
 ### Eliminar un vehiculo
-DELETE http://localhost:5005/vehiculos/1
+DELETE http://localhost:5005/vehiculos/4
