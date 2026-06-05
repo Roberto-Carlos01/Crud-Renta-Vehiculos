@@ -1,8 +1,10 @@
-const Reserva = require("./../models/reserva");
+const { Cliente, Vehiculo, Reserva } = require("./../models/index");
 
 async function obtenerReservasVC() {
   try {
-    const reservas = await Reserva.findAll();
+    const reservas = await Reserva.findAll({
+      include: [Cliente, Vehiculo],
+    });
     return reservas;
   } catch (error) {
     console.error("❌ Error al obtener reservas:", error);

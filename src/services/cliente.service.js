@@ -18,6 +18,16 @@ async function obtenerClientePorId(id) {
     throw error;
   }
 }
+async function obtenerClientePorCI(ci) {
+  try {
+    const cliente = await Cliente.findOne({ where: { ci: ci } });
+    return cliente;
+  } catch (error) {
+    console.error("❌ Error al solicitar cliente con CI: ", ci);
+    throw error;
+  }
+}
+
 async function crearCliente(nombre, apellido, telefono, ci, licencia) {
   try {
     const nuevoCliente = await Cliente.create({
@@ -69,4 +79,5 @@ module.exports = {
   crearCliente,
   actualizarCliente,
   eliminarCliente,
+  obtenerClientePorCI,
 };

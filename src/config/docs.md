@@ -3,8 +3,9 @@
 
 -- Mostrar el historial de reservas o vehiculos alquilados con los siguientes datos:
     Cliente: Nombre apellido , Ci ; Vehiculo : marca , modelo, preicioDIa
-    datos de la reserva:  estado , total , fecha ini , fecha fin 
-    ademas de mostrar cantidad de dias alquilados mediante fecha ini y fecha fin
+    datos de la reserva:  estado , total , fecha ini , fecha fin
+
+--ademas : mostrar cantidad de dias alquilados mediante fecha ini y fecha fin
 
 -- Cada seccion que muestre un fila del historial de reservas tiene un boton que dice ver cliente , y otro que dice ver vehiculo, estos     botones redirigen a otra pagina donde se puede ver el vehiculo o el cliente con sus datos completos  
 

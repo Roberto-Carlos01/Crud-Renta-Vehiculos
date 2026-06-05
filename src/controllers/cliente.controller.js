@@ -23,7 +23,7 @@ async function getClientForId(req, res) {
     }
   } catch (error) {
     console.error("Error al obtener cliente por id:", error);
-    res.status(500).json({ menssage: "Error al obtener los clientes" });
+    res.status(500).json({ message: "Error al obtener los clientes" });
   }
 }
 

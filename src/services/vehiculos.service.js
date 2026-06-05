@@ -19,6 +19,15 @@ async function obtenerVehiculoPorId(id) {
     throw error;
   }
 }
+async function obtenerVehiculoPorPlaca(placa) {
+  try {
+    const vehiculo = await Vehiculo.findOne({ where: { placa: placa } });
+    return vehiculo;
+  } catch (error) {
+    console.error("❌ Error al obtener vehiculo por placa : ", error);
+    throw error;
+  }
+}
 async function crearVehiculo(
   marca,
   modelo,
@@ -99,4 +108,5 @@ module.exports = {
   obtenerVehiculos,
   modificarVehiculo,
   eliminarVehiculo,
+  obtenerVehiculoPorPlaca,
 };
