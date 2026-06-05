@@ -1,18 +1,64 @@
-### Funcionalidaes del sistema:
-- FUNCIONALIDADES PRINCIPALES
+# 🚗 Sistema de Gestión de Alquiler de Vehículos
 
--- Mostrar el historial de reservas o vehiculos alquilados con los siguientes datos:
-    Cliente: Nombre apellido , Ci ; Vehiculo : marca , modelo, preicioDIa
-    datos de la reserva:  estado , total , fecha ini , fecha fin
+> **Documentación de Funcionalidades del Sistema**
 
---ademas : mostrar cantidad de dias alquilados mediante fecha ini y fecha fin
+---
 
--- Cada seccion que muestre un fila del historial de reservas tiene un boton que dice ver cliente , y otro que dice ver vehiculo, estos     botones redirigen a otra pagina donde se puede ver el vehiculo o el cliente con sus datos completos  
+## 📌 Funcionalidades Principales
 
--- Cada cliente tiene un boton que dice : "Mostrar reservaciones", lo cual nos redirige a otra pagina con la lista de todas las reservaciones de ese cliente
+### 1. Historial de Reservas y Alquileres
 
--- Se puede crear nuevas reservaciones : ingresando todos los datos necesarios ci del cliente , placa del vehiculo , y todos los demas datos
--- Se puede modificar el estado de cada reservacion mediante el formulario del CRUD de reservacion
+El sistema permite visualizar un historial detallado de los vehículos alquilados y las reservas realizadas, mostrando la siguiente información estructurada:
 
-- CRUD BASICO DE CLIENTES
-- CRUD BASICO DE VEHICULOS
+- **Datos del Cliente:** Nombre, apellido y Cédula de Identidad (CI).
+- **Datos del Vehículo:** Marca, modelo y precio por día.
+- **Detalles de la Reserva:** Estado actual, costo total, fecha de inicio y fecha de fin.
+- **Cálculo Automático:** El sistema calcula y muestra dinámicamente la **cantidad de días alquilados** en base a la fecha de inicio y fin.
+
+#### 🔄 Flujo de Navegación y Accesibilidad
+
+Para facilitar la administración, cada fila del historial cuenta con acciones interactivas:
+
+- **Botón `Ver Cliente`:** Redirige a una vista de perfil con la información completa del cliente.
+- **Botón `Ver Vehículo`:** Redirige a una página detallada con las especificaciones del automóvil.
+
+---
+
+### 2. Gestión Específica por Cliente
+
+- **Historial Individual:** Cada cliente registrado cuenta con un botón exclusivo: **`Mostrar reservaciones`**.
+- **Acción:** Redirige a una pantalla dedicada que filtra y lista únicamente las reservaciones asociadas a ese cliente de forma limpia y ordenada.
+
+---
+
+### 3. Control de Reservaciones (Proceso Core)
+
+- **Creación de Reservas:** Formulario intuitivo para registrar nuevos alquileres solicitando los datos clave:
+  - _CI del Cliente_ (Asociación)
+  - _Placa del Vehículo_ (Asociación)
+  - _Fechas y datos complementarios._
+- **Modificación de Estados:** Integración con el formulario del CRUD de reservaciones, permitiendo actualizar el estado del alquiler (ej. _Pendiente, Activo, Finalizado, Cancelado_) en tiempo real.
+
+---
+
+## 🛠️ Módulos de Administración (CRUDs Básicos)
+
+El sistema cuenta con paneles de administración tradicionales para la gestión de entidades base:
+
+### 👥 Módulo de Clientes
+
+Permite administrar de forma completa el ciclo de vida de los usuarios en el sistema:
+
+- **C**reate (Registrar nuevo cliente)
+- **R**ead (Visualizar lista y perfiles)
+- **U**pdate (Modificar datos personales / CI)
+- **D**elete (Dar de baja del sistema)
+
+### 🚘 Módulo de Vehículos
+
+Control total sobre la flota de autos disponibles para alquiler:
+
+- **C**reate (Ingresar nuevos vehículos con marca, modelo, placa, etc.)
+- **R**ead (Catálogo y disponibilidad)
+- **U**pdate (Actualizar precios por día o especificaciones)
+- **D**elete (Retirar vehículos de la flota)
