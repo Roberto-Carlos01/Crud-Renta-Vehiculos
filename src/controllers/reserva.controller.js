@@ -88,8 +88,8 @@ async function deleteReservaVCForID(req, res) {
   try {
     const id = req.params.id;
     const filasEliminadas = await reservaService.eliminarReservacion(id);
-    console.log("Filas eliminadas: ", filasEliminadas.length);
-    if (filasEliminadas.length > 0) {
+    console.log("Filas eliminadas: ", filasEliminadas);
+    if (filasEliminadas > 0) {
       res.json({ message: "Reserva eliminada exitosamente" });
     }
   } catch {

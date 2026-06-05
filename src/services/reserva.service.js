@@ -15,6 +15,7 @@ async function obtenerReservasVC() {
 async function obtenerReservaVCForID(id) {
   try {
     const reserva = await Reserva.findOne({
+      include: [Cliente, Vehiculo],
       where: {
         idreserva: id,
       },
