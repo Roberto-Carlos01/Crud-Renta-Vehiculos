@@ -78,6 +78,18 @@ async function deleteCliente(req, res) {
     });
   }
 }
+async function historialCliente(req, res) {
+  try {
+    const id = req.params.id;
+    const historial = await clienteService.verHistorialReservas(id);
+    res.json(historial);
+  } catch {
+    console.error("Error al obtener el historial del cliente:", error);
+    res
+      .status(500)
+      .json({ message: "Error al obtener el historial del cliente" });
+  }
+}
 
 module.exports = {
   getClients,
@@ -85,4 +97,5 @@ module.exports = {
   createCliente,
   updateCliente,
   deleteCliente,
+  historialCliente,
 };

@@ -9,5 +9,5 @@ router.get("/:id", clienteController.getClientForId);
 router.post("/", clienteController.createCliente);
 router.put("/:id", clienteController.updateCliente);
 router.delete("/:id", clienteController.deleteCliente);
-
+router.get("/historial/:id", clienteController.historialCliente);
 module.exports = router;

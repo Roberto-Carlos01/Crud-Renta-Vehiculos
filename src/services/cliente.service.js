@@ -1,4 +1,5 @@
 const Cliente = require("./../models/cliente");
+const sequelize = require("../config/database");
 
 async function obtenerClientes() {
   try {
@@ -73,6 +74,22 @@ async function eliminarCliente(id) {
   }
 }
 
+async function verHistorialReservas(id) {
+  try {
+    const historialCliente = await sequelize.query(
+      "SELECT r.fechaIni AS inicio, r.fechaIni AS fin , r.total , r.estado AS estado_reserva , c.nombre , c.apellido , v.marca , v.modelo, v.color FROM reserva r JOIN cliente c ON c.idcliente= r.idcliente JOIN vehiculo v ON v.idvehiculo = r.idvehiculo WHERE c.idcliente = ? ORDER BY r.fechaIni DESC",
+      { replacements: [id] },
+    );
+    return historialCliente[0];
+  } catch (error) {
+    console.error(
+      "❌ Error al obtener historial de reservas del cliente: ",
+      error,
+    );
+    throw error;
+  }
+}
+
 module.exports = {
   obtenerClientes,
   obtenerClientePorId,
@@ -80,4 +97,5 @@ module.exports = {
   actualizarCliente,
   eliminarCliente,
   obtenerClientePorCI,
+  verHistorialReservas,
 };
