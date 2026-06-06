@@ -1,0 +1,294 @@
+<!DOCTYPE html>
+<html lang="es">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Perfil Cliente</title>
+
+    <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.8/dist/css/bootstrap.min.css" rel="stylesheet">
+
+    <link rel="stylesheet"
+        href="https://cdn.jsdelivr.net/npm/bootstrap-icons@1.13.1/font/bootstrap-icons.min.css">
+
+    <style>
+        body {
+            background: #f4f7fa;
+            min-height: 100vh;
+        }
+
+        .profile-card {
+            border: none;
+            border-radius: 25px;
+            overflow: hidden;
+        }
+
+        .profile-header {
+            background: linear-gradient(135deg, #0d6efd, #4f46e5);
+            height: 180px;
+        }
+
+        .avatar {
+            width: 140px;
+            height: 140px;
+            border-radius: 50%;
+            background: white;
+            color: #0d6efd;
+            font-size: 50px;
+            font-weight: bold;
+            display: flex;
+            justify-content: center;
+            align-items: center;
+            margin: auto;
+            margin-top: -70px;
+            border: 6px solid white;
+        }
+
+        .info-card {
+            border-radius: 20px;
+            border: none;
+            transition: .3s;
+        }
+
+        .info-card:hover {
+            transform: translateY(-5px);
+        }
+
+        .label {
+            color: gray;
+            font-size: .9rem;
+        }
+
+        .value {
+            font-weight: 600;
+            font-size: 1.1rem;
+        }
+    </style>
+</head>
+
+<body>
+
+    <div class="container py-5">
+
+        <div class="card profile-card shadow-lg">
+
+            <div class="profile-header"></div>
+
+            <div class="card-body text-center">
+
+                <div id="avatar" class="avatar">
+                    RC
+                </div>
+
+                <h2 id="nombreCompleto" class="mt-3">
+                    Cargando...
+                </h2>
+
+                <p class="text-muted">
+                    Cliente registrado
+                </p>
+
+                <div class="mt-4">
+
+                    <a id="btnEditar"
+                        href="#"
+                        class="btn btn-primary btn-lg me-2">
+
+                        <i class="bi bi-pencil-square"></i>
+                        Editar
+
+                    </a>
+
+                    <button id="btnEliminar"
+                        class="btn btn-danger btn-lg">
+
+                        <i class="bi bi-trash"></i>
+                        Eliminar
+
+                    </button>
+
+                </div>
+
+            </div>
+
+        </div>
+
+        <div class="row mt-4">
+
+            <div class="col-md-6">
+
+                <div class="card info-card shadow-sm p-4">
+
+                    <div class="label">
+                        Nombre
+                    </div>
+
+                    <div id="nombre" class="value"></div>
+
+                </div>
+
+            </div>
+
+            <div class="col-md-6">
+
+                <div class="card info-card shadow-sm p-4">
+
+                    <div class="label">
+                        Apellido
+                    </div>
+
+                    <div id="apellido" class="value"></div>
+
+                </div>
+
+            </div>
+
+            <div class="col-md-6 mt-4">
+
+                <div class="card info-card shadow-sm p-4">
+
+                    <div class="label">
+                        Teléfono
+                    </div>
+
+                    <div id="telefono" class="value"></div>
+
+                </div>
+
+            </div>
+
+            <div class="col-md-6 mt-4">
+
+                <div class="card info-card shadow-sm p-4">
+
+                    <div class="label">
+                        Carnet de Identidad
+                    </div>
+
+                    <div id="ci" class="value"></div>
+
+                </div>
+
+            </div>
+
+            <div class="col-md-12 mt-4">
+
+                <div class="card info-card shadow-sm p-4">
+
+                    <div class="label">
+                        Licencia de Conducir
+                    </div>
+
+                    <div id="licencia" class="value"></div>
+
+                </div>
+
+            </div>
+
+        </div>
+
+    </div>
+
+    <script>
+
+        const id = window.location.pathname.split("/").pop();
+
+        async function cargarCliente() {
+
+            try {
+
+                const response = await fetch(
+                    `http://localhost:3000/clientes/${id}`
+                );
+
+                if (!response.ok) {
+                    throw new Error("Cliente no encontrado");
+                }
+
+                const cliente = await response.json();
+
+                document.getElementById("nombre").textContent =
+                    cliente.nombre;
+
+                document.getElementById("apellido").textContent =
+                    cliente.apellido;
+
+                document.getElementById("telefono").textContent =
+                    cliente.telefono;
+
+                document.getElementById("ci").textContent =
+                    cliente.ci;
+
+                document.getElementById("licencia").textContent =
+                    cliente.licencia;
+
+                document.getElementById("nombreCompleto").textContent =
+                    `${cliente.nombre} ${cliente.apellido}`;
+
+                const iniciales =
+                    cliente.nombre.charAt(0).toUpperCase() +
+                    cliente.apellido.charAt(0).toUpperCase();
+
+                document.getElementById("avatar")
+                    .textContent = iniciales;
+
+                document.getElementById("btnEditar")
+                    .href = `/clientes/edit/${cliente.idcliente}`;
+
+            }
+            catch (error) {
+
+                alert(error.message);
+
+            }
+
+        }
+
+        async function eliminarCliente() {
+
+            const confirmar = confirm(
+                "¿Deseas eliminar este cliente?"
+            );
+
+            if (!confirmar) return;
+
+            try {
+
+                const response = await fetch(
+                    `http://localhost:3000/clientes/${id}`,
+                    {
+                        method: "DELETE"
+                    }
+                );
+
+                if (!response.ok) {
+                    throw new Error("No se pudo eliminar");
+                }
+
+                alert("Cliente eliminado");
+
+                window.location.href = "/clientes";
+
+            }
+            catch (error) {
+
+                alert(error.message);
+
+            }
+
+        }
+
+        document
+            .getElementById("btnEliminar")
+            .addEventListener(
+                "click",
+                eliminarCliente
+            );
+
+        cargarCliente();
+
+    </script>
+
+</body>
+
+</html>

@@ -1,0 +1,397 @@
+<!DOCTYPE html>
+<html lang="es">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Perfil Vehículo</title>
+
+    <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.8/dist/css/bootstrap.min.css" rel="stylesheet">
+
+    <link rel="stylesheet"
+        href="https://cdn.jsdelivr.net/npm/bootstrap-icons@1.13.1/font/bootstrap-icons.min.css">
+
+    <style>
+        body {
+            background: #f4f7fa;
+        }
+
+        .hero-image {
+            height: 420px;
+            overflow: hidden;
+            position: relative;
+        }
+
+        .hero-image img {
+            width: 100%;
+            height: 100%;
+            object-fit: cover;
+        }
+
+        .overlay {
+            position: absolute;
+            inset: 0;
+            background: rgba(0,0,0,.45);
+        }
+
+        .vehicle-header {
+            position: absolute;
+            bottom: 40px;
+            left: 50px;
+            color: white;
+            z-index: 10;
+        }
+
+        .vehicle-header h1 {
+            font-weight: 800;
+            font-size: 3rem;
+        }
+
+        .profile-card {
+            margin-top: -60px;
+            border-radius: 25px;
+            border: none;
+            position: relative;
+            z-index: 20;
+        }
+
+        .info-card {
+            border: none;
+            border-radius: 20px;
+            transition: .3s;
+        }
+
+        .info-card:hover {
+            transform: translateY(-5px);
+        }
+
+        .label {
+            color: gray;
+            font-size: .9rem;
+        }
+
+        .value {
+            font-weight: 600;
+            font-size: 1.1rem;
+        }
+
+        .price-box {
+            background: linear-gradient(135deg,#0d6efd,#4f46e5);
+            color: white;
+            border-radius: 20px;
+            padding: 30px;
+        }
+
+        .price {
+            font-size: 3rem;
+            font-weight: bold;
+        }
+
+        .description-box {
+            background: white;
+            border-radius: 20px;
+            padding: 30px;
+        }
+
+        .badge-disponible {
+            font-size: .9rem;
+            padding: 10px 15px;
+        }
+    </style>
+</head>
+
+<body>
+
+    <!-- FOTO PRINCIPAL -->
+
+    <div class="hero-image">
+
+        <img id="fotoVehiculo"
+            src="https://images.unsplash.com/photo-1503376780353-7e6692767b70"
+            alt="Vehículo">
+
+        <div class="overlay"></div>
+
+        <div class="vehicle-header">
+
+            <h1 id="tituloVehiculo">
+                Cargando...
+            </h1>
+
+            <span id="estadoVehiculo"
+                class="badge badge-disponible bg-success">
+                Disponible
+            </span>
+
+        </div>
+
+    </div>
+
+    <div class="container">
+
+        <div class="card shadow-lg profile-card">
+
+            <div class="card-body p-4">
+
+                <div class="d-flex flex-wrap justify-content-between align-items-center">
+
+                    <div>
+
+                        <h2 id="marcaModelo">
+                            Vehículo
+                        </h2>
+
+                        <p class="text-muted mb-0">
+                            Información completa del vehículo
+                        </p>
+
+                    </div>
+
+                    <div>
+
+                        <a id="btnEditar"
+                            href="#"
+                            class="btn btn-primary btn-lg me-2">
+
+                            <i class="bi bi-pencil-square"></i>
+                            Editar
+
+                        </a>
+
+                        <button id="btnEliminar"
+                            class="btn btn-danger btn-lg">
+
+                            <i class="bi bi-trash"></i>
+                            Eliminar
+
+                        </button>
+
+                    </div>
+
+                </div>
+
+            </div>
+
+        </div>
+
+        <div class="row mt-4">
+
+            <div class="col-lg-4">
+
+                <div class="price-box shadow">
+
+                    <div>Precio por día</div>
+
+                    <div id="precioDia"
+                        class="price">
+
+                        Bs. 0
+
+                    </div>
+
+                </div>
+
+            </div>
+
+            <div class="col-lg-8">
+
+                <div class="row">
+
+                    <div class="col-md-6 mb-4">
+
+                        <div class="card info-card shadow-sm p-4">
+
+                            <div class="label">Marca</div>
+                            <div id="marca" class="value"></div>
+
+                        </div>
+
+                    </div>
+
+                    <div class="col-md-6 mb-4">
+
+                        <div class="card info-card shadow-sm p-4">
+
+                            <div class="label">Modelo</div>
+                            <div id="modelo" class="value"></div>
+
+                        </div>
+
+                    </div>
+
+                    <div class="col-md-6 mb-4">
+
+                        <div class="card info-card shadow-sm p-4">
+
+                            <div class="label">Año</div>
+                            <div id="anio" class="value"></div>
+
+                        </div>
+
+                    </div>
+
+                    <div class="col-md-6 mb-4">
+
+                        <div class="card info-card shadow-sm p-4">
+
+                            <div class="label">Color</div>
+                            <div id="color" class="value"></div>
+
+                        </div>
+
+                    </div>
+
+                    <div class="col-md-12">
+
+                        <div class="card info-card shadow-sm p-4">
+
+                            <div class="label">Placa</div>
+                            <div id="placa" class="value"></div>
+
+                        </div>
+
+                    </div>
+
+                </div>
+
+            </div>
+
+        </div>
+
+        <div class="description-box shadow mt-4">
+
+            <h3>
+                Descripción
+            </h3>
+
+            <p id="descripcion"
+                class="mt-3 mb-0">
+            </p>
+
+        </div>
+
+    </div>
+
+    <script>
+
+        const id = window.location.pathname.split("/").pop();
+
+        async function cargarVehiculo() {
+
+            try {
+
+                const response = await fetch(
+                    `http://localhost:3000/vehiculos/${id}`
+                );
+
+                if (!response.ok) {
+                    throw new Error("Vehículo no encontrado");
+                }
+
+                const vehiculo = await response.json();
+
+                document.getElementById("marca").textContent =
+                    vehiculo.marca;
+
+                document.getElementById("modelo").textContent =
+                    vehiculo.modelo;
+
+                document.getElementById("anio").textContent =
+                    vehiculo.anio;
+
+                document.getElementById("placa").textContent =
+                    vehiculo.placa;
+
+                document.getElementById("color").textContent =
+                    vehiculo.color;
+
+                document.getElementById("descripcion").textContent =
+                    vehiculo.descripcion;
+
+                document.getElementById("precioDia").textContent =
+                    `Bs. ${vehiculo.precioDia}`;
+
+                document.getElementById("tituloVehiculo").textContent =
+                    `${vehiculo.marca} ${vehiculo.modelo}`;
+
+                document.getElementById("marcaModelo").textContent =
+                    `${vehiculo.marca} ${vehiculo.modelo}`;
+
+                document.getElementById("fotoVehiculo").src =
+                    vehiculo.foto;
+
+                const estado =
+                    document.getElementById("estadoVehiculo");
+
+                if (vehiculo.disponible) {
+
+                    estado.textContent = "Disponible";
+                    estado.classList.remove("bg-danger");
+                    estado.classList.add("bg-success");
+
+                } else {
+
+                    estado.textContent = "No Disponible";
+                    estado.classList.remove("bg-success");
+                    estado.classList.add("bg-danger");
+
+                }
+
+                document.getElementById("btnEditar").href =
+                    `/vehiculos/edit/${vehiculo.idvehiculo}`;
+
+            } catch (error) {
+
+                alert(error.message);
+
+            }
+
+        }
+
+        async function eliminarVehiculo() {
+
+            const confirmar = confirm(
+                "¿Deseas eliminar este vehículo?"
+            );
+
+            if (!confirmar) return;
+
+            try {
+
+                const response = await fetch(
+                    `http://localhost:3000/vehiculos/${id}`,
+                    {
+                        method: "DELETE"
+                    }
+                );
+
+                if (!response.ok) {
+                    throw new Error("No se pudo eliminar");
+                }
+
+                alert("Vehículo eliminado");
+
+                window.location.href = "/vehiculos";
+
+            } catch (error) {
+
+                alert(error.message);
+
+            }
+
+        }
+
+        document
+            .getElementById("btnEliminar")
+            .addEventListener(
+                "click",
+                eliminarVehiculo
+            );
+
+        cargarVehiculo();
+
+    </script>
+
+</body>
+
+</html>
