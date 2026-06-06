@@ -79,7 +79,7 @@ DELETE http://localhost:5005/vehiculos/4
 GET http://localhost:5005/reservas
 
 ### Obtener un historial de reserva por ID
-GET http://localhost:5005/reservas/2
+GET http://localhost:5005/reservas/1
 
 ### Crear una nueva reserva
 POST http://localhost:5005/reservas

@@ -5,7 +5,11 @@ async function obtenerReservasVC() {
     const reservas = await Reserva.findAll({
       include: [Cliente, Vehiculo],
     });
-    return reservas;
+    const reservasWithDays = reservas.map((reserva) => ({
+      ...reserva.toJSON(),
+      dias: contadorDays(reserva.fechaIni, reserva.fechaFin),
+    }));
+    return reservasWithDays;
   } catch (error) {
     console.error("❌ Error al obtener reservas:", error);
     throw error;
@@ -20,8 +24,12 @@ async function obtenerReservaVCForID(id) {
         idreserva: id,
       },
     });
+    const reservaWithDays = {
+      ...reserva.toJSON(),
+      dias: contadorDays(reserva.fechaIni, reserva.fechaFin),
+    };
 
-    return reserva;
+    return reservaWithDays;
   } catch (error) {
     console.error("❌ Error al obtener reserva:", error);
     throw error;
@@ -102,6 +110,16 @@ async function crearReservacion(
   } catch (error) {
     console.error("❌ Error al crear reserva:", error);
 
+    throw error;
+  }
+}
+function contadorDays(fechaIni, fechaFin) {
+  try {
+    const inicio = new Date(fechaIni);
+    const fin = new Date(fechaFin);
+    return (fin - inicio) / (1000 * 60 * 60 * 24);
+  } catch (error) {
+    console.error("❌ Error al calcular días de reserva:", error);
     throw error;
   }
 }
